@@ -40,7 +40,7 @@ class Instruction:
     def get_stage_text(self, stage_index):
         return f"🚗 {self.chassis_no}"
 
-STAGES = ['Şasi Üretimi', 'Motor ve Aktarma', 'Gövde Montajı', 'İç Aksam', 'Test Sürüşü']
+STAGES = ['Bellekten Getir (Şasi Montajı)', 'Buyrukları Çöz (Motor Yerleştirme)', 'İşlemi Yürüt (Boya Uygulama)', 'Bellek Erişimi (Cam ve Kapı Montajı)', 'Sonucu Yaz (Kalite Kontrol)']
 STAGE_SHORT = ['IF', 'ID', 'EX', 'MEM', 'WB']  # Kısa etiketler
 
 class PipelineSimulator(QMainWindow):
@@ -82,10 +82,10 @@ class PipelineSimulator(QMainWindow):
         input_layout = QHBoxLayout()
         self.chassis_input = QLineEdit()
         self.chassis_input.setPlaceholderText("Şasi numaraları (virgülle ayır)")
-        self.chassis_input.setStyleSheet("font-size: 14px;")
+        self.chassis_input.setStyleSheet("font-size: 17px;")
         
         chassis_label = QLabel("Şasi No Gir (Opsiyonel):")
-        chassis_label.setStyleSheet("font-size: 14px; font-weight: bold;")
+        chassis_label.setStyleSheet("font-size: 17px; font-weight: bold;")
         input_layout.addWidget(chassis_label)
         input_layout.addWidget(self.chassis_input)
 
@@ -93,26 +93,26 @@ class PipelineSimulator(QMainWindow):
         self.count_input.setMinimum(1)
         self.count_input.setMaximum(20)
         self.count_input.setValue(5)
-        self.count_input.setStyleSheet("font-size: 14px;")
+        self.count_input.setStyleSheet("font-size: 17px;")
         
         count_label = QLabel("Araba Sayısı:")
-        count_label.setStyleSheet("font-size: 14px; font-weight: bold;")
+        count_label.setStyleSheet("font-size: 17px; font-weight: bold;")
         input_layout.addWidget(count_label)
         input_layout.addWidget(self.count_input)
 
         self.start_button = QPushButton("Başlat")
         self.start_button.clicked.connect(self.start_simulation)
-        self.start_button.setStyleSheet("font-size: 14px; font-weight: bold; padding: 5px 10px;")
+        self.start_button.setStyleSheet("font-size: 17px; font-weight: bold; padding: 5px 10px;")
         input_layout.addWidget(self.start_button)
 
         self.reset_button = QPushButton("Sıfırla")
         self.reset_button.clicked.connect(self.reset_simulation)
-        self.reset_button.setStyleSheet("font-size: 14px; font-weight: bold; padding: 5px 10px;")
+        self.reset_button.setStyleSheet("font-size: 17px; font-weight: bold; padding: 5px 10px;")
         input_layout.addWidget(self.reset_button)
 
         speed_layout = QHBoxLayout()
         speed_label = QLabel("Hız:")
-        speed_label.setStyleSheet("font-size: 14px; font-weight: bold;")
+        speed_label.setStyleSheet("font-size: 17px; font-weight: bold;")
         speed_layout.addWidget(speed_label)
         
         self.speed_slider = QSpinBox()
@@ -121,7 +121,7 @@ class PipelineSimulator(QMainWindow):
         self.speed_slider.setValue(1000)
         self.speed_slider.setSingleStep(100)
         self.speed_slider.setSuffix(" ms")
-        self.speed_slider.setStyleSheet("font-size: 14px;")
+        self.speed_slider.setStyleSheet("font-size: 17px;")
         speed_layout.addWidget(self.speed_slider)
         input_layout.addLayout(speed_layout)
 
@@ -129,7 +129,7 @@ class PipelineSimulator(QMainWindow):
 
         # Ana simülasyon alanı
         tab_widget = QTabWidget()
-        tab_widget.setStyleSheet("QTabBar::tab { font-size: 15px; font-weight: bold; height: 30px; }")
+        tab_widget.setStyleSheet("QTabBar::tab { font-size: 18px; font-weight: bold; height: 30px; }")
         
         # Tab 1: Pipeline Görünümü
         pipeline_tab = QWidget()
@@ -149,18 +149,18 @@ class PipelineSimulator(QMainWindow):
         self.pipeline_table.setRowCount(0)
         self.pipeline_table.setColumnCount(0)
         self.pipeline_table.verticalHeader().setVisible(True)
-        self.pipeline_table.setStyleSheet("QTableWidget { font-size: 14px; } QHeaderView::section { font-size: 14px; font-weight: bold; }")
+        self.pipeline_table.setStyleSheet("QTableWidget { font-size: 17px; } QHeaderView::section { font-size: 17px; font-weight: bold; }")
         pipelined_layout.addWidget(self.pipeline_table)
         
         # Pipelined çıktı listesi
         pipelined_out_layout = QVBoxLayout()
         pipelined_out_label = QLabel("Üretilen Arabalar 🚘")
         pipelined_out_label.setAlignment(Qt.AlignCenter)
-        pipelined_out_label.setStyleSheet("font-size: 15px; font-weight: bold;")
+        pipelined_out_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         pipelined_out_layout.addWidget(pipelined_out_label)
         
         self.pipelined_output_list = QListWidget()
-        self.pipelined_output_list.setStyleSheet("font-size: 14px;")
+        self.pipelined_output_list.setStyleSheet("font-size: 17px;")
         pipelined_out_layout.addWidget(self.pipelined_output_list)
         pipelined_layout.addLayout(pipelined_out_layout)
         
@@ -183,18 +183,18 @@ class PipelineSimulator(QMainWindow):
         self.single_cycle_table.setRowCount(0)
         self.single_cycle_table.setColumnCount(0)
         self.single_cycle_table.verticalHeader().setVisible(True)
-        self.single_cycle_table.setStyleSheet("QTableWidget { font-size: 14px; } QHeaderView::section { font-size: 14px; font-weight: bold; }")
+        self.single_cycle_table.setStyleSheet("QTableWidget { font-size: 17px; } QHeaderView::section { font-size: 17px; font-weight: bold; }")
         single_cycle_layout.addWidget(self.single_cycle_table)
         
         # Tek vuruşlu çıktı listesi
         single_cycle_out_layout = QVBoxLayout()
         single_cycle_out_label = QLabel("Üretilen Arabalar 🚘")
         single_cycle_out_label.setAlignment(Qt.AlignCenter)
-        single_cycle_out_label.setStyleSheet("font-size: 15px; font-weight: bold;")
+        single_cycle_out_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         single_cycle_out_layout.addWidget(single_cycle_out_label)
         
         self.single_cycle_output_list = QListWidget()
-        self.single_cycle_output_list.setStyleSheet("font-size: 14px;")
+        self.single_cycle_output_list.setStyleSheet("font-size: 17px;")
         single_cycle_out_layout.addWidget(self.single_cycle_output_list)
         single_cycle_layout.addLayout(single_cycle_out_layout)
         
@@ -208,7 +208,7 @@ class PipelineSimulator(QMainWindow):
         
         performance_title = QLabel("İşlemci Mimarileri Performans Karşılaştırması")
         performance_title.setAlignment(Qt.AlignCenter)
-        performance_title.setStyleSheet("font-size: 18px; font-weight: bold; margin: 15px;")
+        performance_title.setStyleSheet("font-size: 18px; font-weight: bold; margin: 18px;")
         comparison_layout.addWidget(performance_title)
         
         self.comparison_table = QTableWidget()
@@ -217,7 +217,7 @@ class PipelineSimulator(QMainWindow):
         header = self.comparison_table.horizontalHeader()
         for i in range(4):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
-        self.comparison_table.setStyleSheet("QTableWidget { font-size: 14px; } QHeaderView::section { font-size: 15px; font-weight: bold; }")
+        self.comparison_table.setStyleSheet("QTableWidget { font-size: 17px; } QHeaderView::section { font-size: 18px; font-weight: bold; }")
         comparison_layout.addWidget(self.comparison_table)
         
         # Performans özeti alanı
@@ -241,12 +241,12 @@ class PipelineSimulator(QMainWindow):
         # Renk açıklamaları
         legend_layout = QHBoxLayout()
         legend_label = QLabel("Aşama Kısaltmaları:")
-        legend_label.setStyleSheet("font-size: 14px; font-weight: bold;")
+        legend_label.setStyleSheet("font-size: 17px; font-weight: bold;")
         legend_layout.addWidget(legend_label)
         
         for stage, short in zip(STAGES, STAGE_SHORT):
             label = QLabel(f"{short}: {stage}")
-            label.setStyleSheet("font-size: 14px;")
+            label.setStyleSheet("font-size: 17px;")
             legend_layout.addWidget(label)
             legend_layout.addSpacing(10)
         
@@ -542,12 +542,18 @@ class PipelineSimulator(QMainWindow):
             f"<b>Boru Hatlı İşlemci Toplam Süre:</b> {total_pipelined} döngü<br>"
             f"<b>Tek Vuruşlu İşlemci Toplam Süre:</b> {total_single_cycle} döngü<br>"
             f"<b>Ortalama Hızlanma Oranı:</b> {avg_speedup:.2f}x<br><br>"
-            f"<b>Boru Hatlı Verimlilik:</b> {pipelined_throughput:.4f} araç/döngü<br>"
-            f"<b>Tek Vuruşlu Verimlilik:</b> {single_cycle_throughput:.4f} araç/döngü<br><br>"
+            f"<b>Boru Hatlı Verimlilik (Throughput):</b> {pipelined_throughput:.4f} araç/döngü<br>"
+            f"<b>Tek Vuruşlu Verimlilik (Throughput):</b> {single_cycle_throughput:.4f} araç/döngü<br><br>"
             f"<b>Teorik Açıklama:</b><br>"
-            f"Boru hatlı işlemci, komutları üst üste bindirerek çalıştırabildiği için,<br>"
-            f"ilk komutu tamamladıktan sonra her döngüde bir komut tamamlayabilir (ideal durumda).<br>"
-            f"Tek vuruşlu işlemci ise her komutun tüm aşamalarını tamamlaması gerektiğinden daha yavaş çalışır."
+            f"Boru hatlı (pipelined) işlemci, komutları (araç üretim aşamalarını) bir montaj hattı gibi düşünerek, farklı aşamalardaki komutları eş zamanlı olarak işler. "
+            f"Bu sayede, tek bir komutun tamamlanma süresi (gecikme/latency) azalmasa da, birim zamanda tamamlanan komut sayısı (verim/throughput) önemli ölçüde artar.<br>"
+            f"<b>- Gecikme (Latency):</b> Bir aracın üretim hattına girmesinden çıkmasına kadar geçen toplam süredir.<br>"
+            f"<b>- Verim (Throughput):</b> Birim zamanda üretim hattından çıkan araç sayısıdır.<br>"
+            f"<b>- Komut Başına Döngü (CPI - Cycles Per Instruction):</b><br>"
+            f"  - <b>Tek Vuruşlu:</b> Her bir komut, tüm {len(STAGES)} aşamayı tamamlayana kadar işlemciyi meşgul eder. Bu nedenle CPI, aşama sayısına eşittir (CPI = {len(STAGES)}).<br>"
+            f"  - <b>Boru Hatlı:</b> İlk komut {len(STAGES)} döngüde tamamlandıktan sonra (boru hattının dolması), ideal durumda her döngüde bir yeni komut tamamlanır. Bu da uzun vadede CPI değerini 1'e yaklaştırır.<br>"
+            f"<b>Not:</b> Bu simülasyon, boru hattı tehlikeleri (data hazards, control hazards, structural hazards) gibi performans düşürücü faktörleri içermeyen ideal bir durumu modellemektedir. "
+            f"Gerçek dünya uygulamalarında bu tehlikeler performansı etkileyebilir."
         )
         
         self.summary_label.setText(summary)
